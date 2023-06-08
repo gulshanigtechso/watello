@@ -1,13 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS */
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Lato", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+img {
+  height: 100%;
+}
+
+.section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.accordion_item {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+
+.accordion_item:not(:last-child) {
+    margin-bottom: 1.2rem;
+}
+
+.accordion_title {
+  background-color: #fff;
+  padding: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.accordion_title h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+}
+
+.accordion_title .toggle_icon {
+  width: 15px;
+  height: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.accordion_title .toggle_icon span {
+  width: 100%;
+  height: 2px;
+  margin-top: -2px;
+  background-color: #999;
+}
+
+.accordion_title .toggle_icon span:first-child {
+  transform: rotate(-90deg);
+  transition: transform 0.3s ease-out;
+}
+
+.accordion_title.active {
+    background-color: #000;
+    color: #fff;
+}
+
+.accordion_title.active .toggle_icon span {
+    background-color: #fff;
+}
+
+.accordion_title.active .toggle_icon span:first-child {
+  transform: rotate(45deg);
+}
+
+.accordion_title.active .toggle_icon span:last-child {
+    transform: rotate(-45deg);
+  }
+
+.accordion_title.active + .accordion_content {
+  display: block;
+  animation: fadein 0.5s ease-out;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.accordion_content {
+  display: none;
+  padding: 1.25rem;
+  line-height: 1.6;
+  font-size: 0.975rem;
+}
+
+
+/* Tailwind CSS customization */
+@layer components {
+  .btn {
+    @apply bg-bgBtnColor px-6 py-3 rounded-xl rounded-tl-none font-bold text-textColor1 flex items-center;
+    font-size: 0.875rem;
+  }
+
+  .btnOutlined {
+    @apply bg-transparent border-2 border-gray-400 px-4 py-2;
+  }
+
+  .btn svg {
+    stroke-width: 2.5px;
+  }
+
+  .chip {
+    @apply uppercase font-extrabold text-textColor3 bg-bgColor inline-block py-1 px-3.5 rounded-full;
+    font-size: 12px;
+  }
+
+  .vidBtn {
+    @apply bg-textColor1 text-white border-white w-11 h-11 rounded-full grid place-items-center text-center shadow-md;
+    border-width: 5px;
+  }
+
+  .navlinks {
+    @apply text-gray-500 hover:text-textColor1;
+    font-size: 0.94rem;
+    font-weight: 600;
+  }
+
+  .navlinks.active {
+    @apply text-textColor1 border-b-2 border-textColor1;
+  }
+
+  .footlinks {
+    @apply flex flex-col gap-2.5 text-sm mt-3;
+  }
 }

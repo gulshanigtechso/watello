@@ -3,11 +3,14 @@ import { footLinks1, footLinks2, footLinks3, footLinks4, footLinks5 } from '../d
 
 const Footer = () => {
     return (
-        <footer className='pt-16 pb-8 bg-bgColor2'>
+        <footer className='pt-16 pb-8 bg-bgColor2 text-center lg:text-left'>
             <div className="container">
-                <div className="grid grid-cols-6">
-                    <div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-10">
+                    <div className='col-auto lg:col-span-2'>
                         <a href="/">watello</a>
+                        <p className='mt-2 text-sm text-slate-600'>With Reliable, Friendly and Trustful being our company values,
+                            we are present ourselves with the most complete and up to date
+                            cleaning services.</p>
                     </div>
 
                     <div>
@@ -71,9 +74,9 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className='text-sm mt-5'>
+                <div className='mt-12 text-sm lg:mt-5'>
                     <p>&#169; {new Date().getFullYear()}</p>
-                    <div className='flex gap-1'>
+                    <div className='flex gap-1 justify-center md:justify-start'>
                         <a href="/">Privacy</a>
                         -
                         <a href="/">Terms</a>

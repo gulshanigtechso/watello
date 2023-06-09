@@ -1,18 +1,20 @@
 import React from 'react';
 import { BsPlayFill, BsPlus } from 'react-icons/bs';
 import Button from '../components/Button';
-import Accordions from '../components/Accordions';
 import Slider from '../components/Slider';
 import testiData from '../data/testiData';
+import accordionData from '../data/accordionData';
+import Accordion from '../components/Accordion';
+
 
 
 const Home = () => {
     return (
         <main>
-            <section className='bg-bgColor min-h-screen'>
+            <section className='bg-bgColor'>
                 <div className="container">
-                    <div className="grid grid-cols-2 justify-center items-center pt-16">
-                        <div className='mx-auto'>
+                    <div className="grid grid-cols-1 gap-7 pt-28 lg:grid-cols-2 items-center lg:pt-16 lg:gap-0">
+                        <div>
                             <h1 className='text-5xl font-extrabold'>
                                 <span className='text-textColor1'>Professional</span> Cleaning <br /> service for your home
                             </h1>
@@ -63,44 +65,74 @@ const Home = () => {
                             </div>
                         </div>
 
-                        <div className='w-9/12 mx-auto'>
+                        <div className='hidden md:block hero_img'>
                             <img src="/images/hero-img.png" alt="hero-img" />
+                        </div>
+
+                        <div className='md:hidden hero_m_img'>
+                            <img src="/images/hero-m-img.png" alt="hero-img" />
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section className='section'>
+            <section className='pt-20 pb-12 lg:pb-10'>
                 <div className="container">
-                    <div className="grid grid-cols-2">
-                        <div>
+                    <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-32">
+                        <div className='relative'>
                             <h6 className='chip'>About us</h6>
                             <h2 className='text-4xl font-extrabold text-textColor2 mt-6 leading-tight'>We Are Providing Best <br /> Cleaning Services</h2>
+                            <div className='static lg:absolute lg:-bottom-10'>
+                                <img src="/images/about-img.png" alt="" />
+                            </div>
                         </div>
 
                         <div>
                             <p>For over 15 years, customers have welcomed the trusted
                                 cleaning professionals from locally owned and operated
                                 businesses into their homes.</p>
-
-                            <Accordions />
-
+                            <Accordion accData={accordionData} />
                             <Button btnTxt="Contact Us" />
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section className='section bg-bgColor'>
+            <section className='bg-bgColor pt-20 lg:pb-0'>
                 <div className="container">
-                    <div className="grid grid-cols-2">
-                        <div>
+                    <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-32">
+                        <div className='relative'>
                             <h6 className='chip'>Why Choose us?</h6>
                             <h2 className='text-4xl font-extrabold text-textColor2 mt-6 leading-tight'>We maintain healthy, <br /> environments through <br /> our services</h2>
                             <p className='mt-4 mb-8'>Our environment has a large impact on our health and well-
                                 being, an important part of living well is doing our part to
                                 take care of the environment.</p>
                             <Button btnTxt="Contact Us" />
+
+                            <div className='hidden lg:block absolute bottom-0 right-16'>
+                                <img src="/images/whyus-img1.png" alt="" className='w-52' />
+                            </div>
+                        </div>
+
+                        <div>
+                            <div className='rounded-lg overflow-hidden'>
+                                <img src="/images/whyus-img2.jpg" alt="" />
+                            </div>
+                            <div className='flex flex-col text-center md:text-left md:flex-row justify-between mt-8 pb-16 gap-8 lg:gap-0'>
+                                <div>
+                                    <img src="/images/icons/medal.png" alt="" className='w-10 mx-auto md:mx-0' />
+                                    <h6 className='font-bold mt-3 my-2.5'>Quality is our property</h6>
+                                    <p className='text-sm text-gray-500'>While we are by no means perfect, <br /> if you're not happy with the job.</p>
+                                </div>
+
+                                <div className='border border-dashed border-pink-200 my-3'></div>
+
+                                <div>
+                                    <img src="/images/icons/shield.png" alt="" className='w-10 mx-auto md:mx-0' />
+                                    <h6 className='font-bold mt-3 my-2.5'>Commitment to safety</h6>
+                                    <p className='text-sm text-gray-500'>While we are by no means perfect, <br /> if you're not happy with the job.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -108,6 +140,10 @@ const Home = () => {
 
             <section className='section'>
                 <div className="container">
+                    <div className='text-center'>
+                        <h6 className='chip'>Testimonials</h6>
+                        <h2 className='text-4xl font-extrabold text-textColor2 mt-6 leading-tight'>What our clients say...</h2>
+                    </div>
                     <Slider slideData={testiData} />
                 </div>
             </section>

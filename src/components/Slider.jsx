@@ -13,8 +13,9 @@ const Slider = ({ slideData }) => {
         <Swiper
             modules={[Pagination, A11y, Autoplay]}
             speed={400}
+            loop={true}
             spaceBetween={50}
-            slidesPerView={3}
+            slidesPerView={'auto'}
             pagination={{ clickable: true }}
         // autoplay={{
         //     delay: 4000,

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-// import { motion, AnimatePresence } from 'framer-motion';
-// import { BiChevronDown } from "react-icons/bi";
+import { motion, AnimatePresence } from 'framer-motion';
+import { BsPlusLg } from "react-icons/bs";
 
 const Accordion = ({ accData }) => {
 
@@ -13,8 +13,6 @@ const Accordion = ({ accData }) => {
         setIsClicked(id);
     };
 
-    // const [show, setShow] = useState(false);
-
 
     return (
         <div className='my-10'>
@@ -22,50 +20,35 @@ const Accordion = ({ accData }) => {
                 accData.map(item => {
                     const { id, title, content } = item;
                     return (
-                        <div className="accordion_item shadow-xl overflow-hidden" key={id}>
+                        <div className="border border-gray-300 rounded-md shadow-xl overflow-hidden [&:not(:last-child)]:mb-6" key={id}>
+                            {/* Accordion Title */}
                             <div
-                                className={`accordion_title ${isClicked === id ? 'active' : ''}`}
+                                className={`p-[1.2rem] flex justify-between items-center cursor-pointer select-none transition duration-300 ${isClicked === id ? 'bg-textColor2 text-white' : 'bg-white'}`}
                                 onClick={() => handleIsClicked(id)}
                             >
-                                <h2>{title}</h2>
-                                <div className="toggle_icon">
-                                    <span></span>
-                                    <span></span>
+                                <h2 className='sm:text-[1.08rem] font-semibold tracking-wide'>{title}</h2>
+                                <div>
+                                    <BsPlusLg className={`text-xl transition-transform duration-300 ${isClicked === id ? 'rotate-45' : null}`} />
                                 </div>
                             </div>
-                            <div className="accordion_content">
-                                <p>{content}</p>
-                            </div>
+
+                            {/* Accordion Content */}
+                            <AnimatePresence>
+                                {
+                                    isClicked === id && (
+                                        <motion.div
+                                            initial={{ height: 0 }}
+                                            animate={{ height: 'auto' }}
+                                            exit={{ height: 0 }}
+                                            transition={{ duration: 0.3 }}
+                                            className='overflow-clip'
+                                        >
+                                            <p className='text-[0.95rem] p-[1.2rem] leading-relaxed text-left'>{content}</p>
+                                        </motion.div>
+                                    )
+                                }
+                            </AnimatePresence>
                         </div>
-
-                        // <div key={id}>
-                        //     {/* question section */}
-                        //     <div
-                        //         onClick={() => setShow(!show)}
-                        //         className="flex justify-between items-center cursor-pointer"
-                        //     >
-                        //         <h1 className="text-xl font-semibold text-green">{title}</h1>
-                        //         <BiChevronDown
-                        //             className={`text-3xl transition-all duration-500 ${show ? "rotate-180" : ""
-                        //                 }`}
-                        //         ></BiChevronDown>
-                        //     </div>
-
-                        //     {/* answer section */}
-                        //     <AnimatePresence>
-                        //         {show && (
-                        //             <motion.div
-                        //                 initial={{ height: 0 }}
-                        //                 animate={{ height: "auto" }}
-                        //                 exit={{ height: 0 }}
-                        //                 transition={{ duration: 0.3 }}
-                        //                 className="overflow-clip"
-                        //             >
-                        //                 <p className="pt-3 text-sm md:text-base">{content}</p>
-                        //             </motion.div>
-                        //         )}
-                        //     </AnimatePresence>
-                        // </div>
                     );
                 })
             }

@@ -14,13 +14,13 @@ const Slider = ({ slideData }) => {
             modules={[Pagination, A11y, Autoplay]}
             speed={400}
             loop={true}
-            spaceBetween={50}
+            spaceBetween={100}
             slidesPerView={'auto'}
             pagination={{ clickable: true }}
-        // autoplay={{
-        //     delay: 4000,
-        //     disableOnInteraction: false,
-        // }}
+            autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+            }}
         >
             {
                 slideData.map(item => {

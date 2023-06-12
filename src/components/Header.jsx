@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import headerData from '../data/headerData';
 import Button from './Button';
-import { GiHamburgerMenu } from 'react-icons/gi';
 
 const Header = () => {
 
@@ -31,7 +30,7 @@ const Header = () => {
     });
 
     // disable the body-scroll when the Sidebar is open.
-    const docBody = document.body;
+    const docBody = document.documentElement;
     isSidebarOpen ? docBody.classList.add('overflow-hidden') : docBody.classList.remove('overflow-hidden');
 
 
@@ -42,7 +41,6 @@ const Header = () => {
                     <div>
                         <a href="/" className='text-2xl font-extrabold'>watello</a>
                     </div>
-
                     <div className='flex gap-8'>
                         {
                             headerData.map(item => {
@@ -51,7 +49,6 @@ const Header = () => {
                             })
                         }
                     </div>
-
                     <div>
                         <Button btnTxt="Free Consultation" cls="btnOutlined" />
                     </div>
@@ -63,27 +60,26 @@ const Header = () => {
                         <a href="/" className='text-2xl font-extrabold'>watello</a>
                     </div>
 
-                    {/*===== Sidebar =====*/}
-                    <div className={`sidebar ${isSidebarOpen ? 'show' : ''}`}>
-                        <div className="sidebar_head">
-                            <a href="/" className='text-2xl font-extrabold'>watello</a>
-                        </div>
-                        <div className="sidebar_body">
-                            <ul>
-                                {
-                                    headerData.map(item => {
-                                        const { id, link, path, cls } = item;
-                                        return <a href={path} key={id} className={`navlinks ${cls}`}>{link}</a>;
-                                    })
-                                }
-                            </ul>
-                        </div>
-                        <div className="sidebar_foot">
-                            <p>&#169; {new Date().getFullYear()} | watello</p>
-                            <div className='flex gap-1 mt-3'>
-                                <a href="/">Privacy</a>
-                                -
-                                <a href="/">Terms</a>
+                    {/* Sidebar */}
+                    <div className={`sidebar fixed top-0 left-0 z-[99] w-full h-full bg-black bg-opacity-50 pointer-events-none opacity-0 transition-opacity duration-300 ${isSidebarOpen ? 'show' : ''}`}>
+                        <div className='sidebar_content max-w-[250px] w-full h-full bg-bgColor shadow-2xl p-8 text-center'>
+                            <div className="py-10">
+                                <a href="/" className='text-2xl font-extrabold'>watello</a>
+                            </div>
+                            <div className="py-10 border-t border-b border-dashed border-gray-400">
+                                <ul className='grid gap-4'>
+                                    {
+                                        headerData.map(item => {
+                                            const { id, link, path, cls } = item;
+                                            return <li key={id}><a href={path} className={`navlinks ${cls}`}>{link}</a></li>;
+                                        })
+                                    }
+                                </ul>
+                            </div>
+                            <div className="py-10">
+                                <div>
+                                    <Button btnTxt="Free Consultation" cls="btnOutlined" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -91,7 +87,6 @@ const Header = () => {
                     <div
                         className='sidebar_btn'
                         onClick={toggleSidebar}
-                        title={isSidebarOpen ? 'Close Sidebar' : 'Open Sidebar'}
                     >
                         <span></span>
                         <span></span>
